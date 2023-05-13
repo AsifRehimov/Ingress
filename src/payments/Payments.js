@@ -39,7 +39,7 @@ function Payments() {
 
 
     useEffect(() => {
-            axios.get('http://payments.ingress.academy/payments/v1/accounts/all', {
+            axios.get('/payments/v1/accounts/all', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("item")}`,
                 },
@@ -55,7 +55,7 @@ function Payments() {
                 .catch(er => console.log(er))
         },[])
     useEffect(() => {
-            axios.get('http://payments.ingress.academy/payments/v1/courses/all/enable', {
+            axios.get('/payments/v1/courses/all/enable', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("item")}`,
                 },
@@ -72,7 +72,7 @@ function Payments() {
         },[])
         const RefData = useCallback(() => {
             if (search === 0) {
-                axios.get(`http://payments.ingress.academy/payments/v1/payments/all?page=${currentPage}&size=5`, {
+                axios.get(`/payments/v1/payments/all?page=${currentPage}&size=5`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem("item")}`,
                     },
@@ -89,7 +89,7 @@ function Payments() {
                 )
                     .catch(er => console.log(er))
             } else if( search === 1){
-                const url = `http://payments.ingress.academy/payments/v1/payments/filter?from=${fromDate}&to=${toDate}&page=${currentPage}&size=5`
+                const url = `/payments/v1/payments/filter?from=${fromDate}&to=${toDate}&page=${currentPage}&size=5`
     
                 axios.get(url, {
                     headers: {
@@ -107,7 +107,7 @@ function Payments() {
                     .catch(er => console.log(er))
             
             } else {
-                const url = `http://payments.ingress.academy/payments/v1/payments/search?username=${searchNumber}&page=${currentPage}&size=5`
+                const url = `/payments/v1/payments/search?username=${searchNumber}&page=${currentPage}&size=5`
     
                 axios.get(url, {
                     headers: {
@@ -152,7 +152,7 @@ function Payments() {
     }
     const addPayment = () => {
         if(student !=='' && amount !=='' && cart !== '' && course !== '' && courseMonth !== '' && checkPhoto !== '' && checkStory !== '')
-        {axios.put('http://payments.ingress.academy/payments/v1/payments', {
+        {axios.put('/payments/v1/payments', {
             accountId:student,
             amount:amount,
             cardName:cart,
@@ -187,7 +187,7 @@ function Payments() {
     const editPayment = () => {
         if(studentEdit !=='' && amountEdit !=='' && cartEdit !== '' && courseEdit !== '' && courseMonthEdit !== '' && checkPhotoEdit !== '' && checkStoryEdit !== '')
         
-        { axios.put('http://payments.ingress.academy/payments/v1/payments', {
+        { axios.put('/payments/v1/payments', {
             accountId:studentEdit,
             amount:amountEdit,
             cardName:cartEdit,
