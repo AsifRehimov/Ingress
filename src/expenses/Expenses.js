@@ -31,7 +31,7 @@ function Expenses() {
 
 
     const RefData = useCallback(() => {
-        axios.get(`http://payments.ingress.academy/payments/v1/expense/all?page=${currentPage}&size=5`, {
+        axios.get(`/payments/v1/expense/all?page=${currentPage}&size=5`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem("item")}`,
             },
@@ -89,7 +89,7 @@ function Expenses() {
 
     const addExpenses = () => {
         if (amount !== '' && text !== '' && paymentsName !== '' && urlImg !== '' && date !== '') {
-            axios.put('http://payments.ingress.academy/payments/v1/expense', {
+            axios.put('/payments/v1/expense', {
                 amount: parseInt(amount, 10),
                 description: text,
                 name: paymentsName,
@@ -126,7 +126,7 @@ function Expenses() {
     }
     const editExpenses = () => {
         if (amountEdit !== '' && textEdit !== '' && paymentsNameEdit !== '' && urlImgEdit !== '' && dateEdit !== '') {
-            axios.put('http://payments.ingress.academy/payments/v1/expense', {
+            axios.put('/payments/v1/expense', {
                 amount: parseInt(amountEdit, 10),
                 description: textEdit,
                 id: editData.id,
