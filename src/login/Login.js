@@ -10,8 +10,6 @@ export default function Login() {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    // const[error, setError] = useState(false)
-    // const[status, setStatus] = useState(0)
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
 
@@ -19,7 +17,7 @@ export default function Login() {
     const HandleClick = e => {
         e.preventDefault()
         console.log(username, password);
-        axios.post('http://payments.ingress.academy/users2/auth/sign-in/', {
+        axios.post('/users2/auth/sign-in/', {
 
             username: username,
             password: password,
