@@ -28,7 +28,7 @@ function Courses() {
     const [filterData, setFilterData] = useState();
 
     useEffect(() => {
-            axios.get(`http://payments.ingress.academy/payments/v1/courses/all`, {
+            axios.get(`/payments/v1/courses/all`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("item")}`,
                 },
@@ -43,7 +43,7 @@ function Courses() {
         },[])
 
         const RefData = useCallback(() => { if (search === 0) {
-             axios.get(`http://payments.ingress.academy/payments/v1/courses/all?page=${currentPage}&size=5`, {
+             axios.get(`/payments/v1/courses/all?page=${currentPage}&size=5`, {
                  headers: {
                      'Authorization': `Bearer ${localStorage.getItem("item")}`,
                  },
@@ -57,7 +57,7 @@ function Courses() {
              )
                  .catch(er => console.log(er))
          } else {
-             const url = `http://payments.ingress.academy/payments/v1/courses/?name=${courseSearch}&page=${currentPage}&size=5`
+             const url = `/payments/v1/courses/?name=${courseSearch}&page=${currentPage}&size=5`
  
              axios.get(url, {
                  headers: {
@@ -88,7 +88,7 @@ function Courses() {
 
 
     const handleAddCourse = () => {
-       if(addcourse !== ""){axios.put('http://payments.ingress.academy/payments/v1/courses',
+       if(addcourse !== ""){axios.put('/payments/v1/courses',
             {
                 name: addcourse
             }, {
@@ -115,7 +115,7 @@ function Courses() {
         let answe ;
         if(item.isEnable === true)  {answe = "disable"}
         else answe = "enable"
-        axios.post(`http://payments.ingress.academy/payments/v1/courses/${item.id }/${answe}`, {
+        axios.post(`/payments/v1/courses/${item.id }/${answe}`, {
          
             // id: item.id,
             // accounts: item.accounts,
@@ -139,7 +139,7 @@ function Courses() {
     const handleEditSave = () => {
         if (editCourse !== '') {
             
-            axios.put('http://payments.ingress.academy/payments/v1/courses',
+            axios.put('/payments/v1/courses',
     
                 {
                     id: editId,
@@ -168,7 +168,7 @@ function Courses() {
     const handleConndent = (e) => {
         e.preventDefault()
         if(connectStudent.length === 12 && change !== 0)
-        {axios.post(`http://payments.ingress.academy/payments/v1/courses/add-student/?username=${connectStudent}&courseId=${change}`,
+        {axios.post(`/payments/v1/courses/add-student/?username=${connectStudent}&courseId=${change}`,
         {
             id: parseInt(change, 10),
             name:[filterData].name,
@@ -208,7 +208,7 @@ function Courses() {
         setStudentItem(item)
     }
     const handleDelete = (e, item) => {
-        axios.delete(`http://payments.ingress.academy/payments/v1/courses/delete-student/?username=${item.username}&courseId=${studentItem.id}`,
+        axios.delete(`/payments/v1/courses/delete-student/?username=${item.username}&courseId=${studentItem.id}`,
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("item")}`,
