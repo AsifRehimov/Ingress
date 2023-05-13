@@ -27,7 +27,7 @@ function Students() {
 
     const RefData = useCallback(() => {
         if (search === 0) {
-            axios.get(`http://payments.ingress.academy/payments/v1/accounts/all?page=${currentPage}&size=5`, {
+            axios.get(`/payments/v1/accounts/all?page=${currentPage}&size=5`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("item")}`,
                 },
@@ -44,7 +44,7 @@ function Students() {
                 .catch(er => console.log(er))
         } else {
             console.log(numberSearch === "");
-            const url = `http://payments.ingress.academy/payments/v1/accounts/?username=${numberSearch}&page=${currentPage}&size=5`
+            const url = `/payments/v1/accounts/?username=${numberSearch}&page=${currentPage}&size=5`
 
             axios.get(url, {
                 headers: {
@@ -88,7 +88,7 @@ function Students() {
 
     const handleAdd = () => {
         if (number.length === 9 && email !== "" && surname !== "" && name !== "") {
-            axios.put('http://payments.ingress.academy/payments/v1/accounts',
+            axios.put('/payments/v1/accounts',
                 {
                     accountName: name,
                     email: email,
@@ -122,7 +122,7 @@ function Students() {
             RefData()
         }, 200);
         if (numberEdit.length === 9 && emailEdit !== "" && surnameEdit !== "" && nameEdit !== "") {
-            axios.put('http://payments.ingress.academy/payments/v1/accounts',
+            axios.put('/payments/v1/accounts',
 
                 {
                     accountName: nameEdit,
